@@ -27,9 +27,9 @@ long long factorial(int n) {
 template <typename generiX>
 double squareRoot(generiX X) {
 	if (X == 0) return 0;
-	X = absolute(X);
-	generiX estimate = X;
-	generiX result = 0;
+	else if (X < 0) return nan("");
+	double estimate = static_cast<double>(X);
+	double result = 0;
 	int counter = 0;
 	while ((estimate - result)) {
 		result = estimate;
@@ -46,7 +46,7 @@ double squareRoot(generiX X) {
 double pi() {
 	double crust = 0;
 	for (double ip = 0; ip < 8; ip++) {//any more than 8 and it returns inf
-		crust += 1.0 / power(16, ip) *
+		crust += 1.0 / power(16.0, ip) *
 			(4.0 / (8.0 * ip + 1.0) - 2.0 / (8.0 * ip + 4.0) - 1.0 / (8.0 * ip + 5.0) - 1.0 / (8.0 * ip + 6.0));
 	}
 	return crust;
@@ -56,22 +56,22 @@ template <typename generiX>
 double sine(generiX X) {
 	int holdSign = X / absolute(X);
 	double holdX = static_cast<double>(X);
-	while (holdX > pi()) {
+	while (holdX >= pi()) {
 		holdX -= pi();
 		holdSign *= -1;
 	}
 	double result = 0;
-	for (int n = 0; n < 9; n++) {
-		double nume = power(-1, n);
+	for (double n = 0.0; n < 9.0; n++) {
+		double nume = power(-1.0, n);
 		long long denom = factorial(2 * n + 1);
-		result += nume / denom * power(holdX, 2 * n + 1);
+		result += nume / denom * power(holdX, 2.0 * n + 1.0);
 	}
-	return result;
+	return result * holdSign;
 }
 
 template <typename generiX>
 double cosine(generiX X) {
-	return sine(pi() / 2 - X);
+	return sine(pi() / 2.0 - X);
 }
 
 template <typename generiX>
