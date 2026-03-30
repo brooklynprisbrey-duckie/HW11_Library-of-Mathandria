@@ -9,7 +9,7 @@ set( APP_EXECUTABLE main )
 
 include_directories( inc )
 
-ADD_EXECUTABLE(main "src/main.cpp")
+ADD_EXECUTABLE(main "src/main.cpp" "src/bmath.cpp")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
