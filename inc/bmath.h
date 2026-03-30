@@ -8,10 +8,11 @@ generiX absolute(generiX X) {
 
 template <typename generiX>
 generiX power(generiX X, int n) {
+	generiX result = 1;
 	for (int i = 0; i < n; i++) {
-		X *= n;
+		result *= X;
 	}
-	return X;
+	return result;
 }
 
 long long factorial(int n) {
@@ -30,9 +31,9 @@ double squareRoot(generiX X) {
 	generiX estimate = X;
 	generiX result = 0;
 	int counter = 0;
-	while (!(estimate - result)) {
+	while ((estimate - result)) {
 		result = estimate;
-		estimate = 1 / 2 * (estimate + X / estimate);
+		estimate = 0.5 * (estimate + X / estimate);
 		counter++;
 		if (counter == 100) {
 			std::cout << "100 iterations reached. Broke early" << endl;
@@ -44,8 +45,9 @@ double squareRoot(generiX X) {
 
 double pi() {
 	double crust = 0;
-	for (int ip = 0; ip < 16; ip++) {
-		crust += 1 / power(16, ip) * (4 / (8 * ip + 1) - 2 / (8 * ip + 4) - 1 / (8 * ip + 5) - 1 / (8 * ip + 6));
+	for (double ip = 0; ip < 8; ip++) {//any more than 8 and it returns inf
+		crust += 1.0 / power(16, ip) *
+			(4.0 / (8.0 * ip + 1.0) - 2.0 / (8.0 * ip + 4.0) - 1.0 / (8.0 * ip + 5.0) - 1.0 / (8.0 * ip + 6.0));
 	}
 	return crust;
 }
