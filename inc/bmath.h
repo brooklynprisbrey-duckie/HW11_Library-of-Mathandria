@@ -53,9 +53,9 @@ double pi() {
 }
 
 template <typename generiX>
-double sine(generiX X) {
+double sine(generiX X) {//as measured in radians
 	int holdSign = X / absolute(X);
-	double holdX = static_cast<double>(X);
+	double holdX = static_cast<double>(absolute(X));
 	while (holdX >= pi()) {
 		holdX -= pi();
 		holdSign *= -1;
@@ -64,7 +64,7 @@ double sine(generiX X) {
 	for (double n = 0.0; n < 9.0; n++) {
 		double nume = power(-1.0, n);
 		long long denom = factorial(2 * n + 1);
-		result += nume / denom * power(holdX, 2.0 * n + 1.0);
+		result += (nume / denom) * power(holdX, 2.0 * n + 1.0);
 	}
 	return result * holdSign;
 }
