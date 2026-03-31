@@ -66,6 +66,9 @@ double sine(generiX X) {//as measured in radians
 		long long denom = factorial(2 * n + 1);
 		result += (nume / denom) * power(holdX, 2.0 * n + 1.0);
 	}
+	if (absolute(result) - 1 / power(10., 8.) < 0) {
+		return 0.;
+	}
 	return result * holdSign;
 }
 
